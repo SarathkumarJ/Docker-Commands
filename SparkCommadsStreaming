@@ -89,3 +89,25 @@ print (record_metadata.offset)
 
 
 ./spark-submit --master spark://sarath.hp:7077  --jars spark-streaming-kafka-0-8-assembly_2.11-2.3.0.jar /home/sarath/Documents/test.py localhost:9092 'test'
+
+
+
+curl -X POST http://sarath.hp:6066/v1/submissions/create --header "Content-Type:application/json;charset=UTF-8" --data '{
+   "action":"CreateSubmissionRequest",
+   "appArgs":[
+      "/home/sarath/Workspace/Spark/spark-python.py"
+   ],
+   "appResource":"file:/home/sarath/Workspace/Spark/spark-python.py",
+   "clientSparkVersion":"2.2.1",
+   "environmentVariables":{
+      "SPARK_ENV_LOADED":"1"
+   },
+   "mainClass":"org.apache.spark.deploy.SparkSubmit",
+   "sparkProperties":{
+      "spark.driver.supervise":"false",
+      "spark.app.name":"Simple App",
+      "spark.eventLog.enabled":"true",
+      "spark.submit.deployMode":"cluster",
+      "spark.master":"spark://sarath.hp:6066"
+   }
+}'
